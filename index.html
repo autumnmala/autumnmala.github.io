@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Autumn Sithoumma</title>
+<meta name="description" content="Autumn Sithoumma, Senior Accountant with nine years of full-cycle experience across private equity, tech and media.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* Layout idea: a ledger. Mono date column on the left, entries on the right, ruled lines between rows. */
+  :root {
+    --paper: #f5f6f2;
+    --panel: #ffffff;
+    --ink: #15202b;
+    --muted: #55626e;
+    --rule: #d6dbd3;
+    --accent: #1b6b57;
+    --accent-soft: #e0eee9;
+    --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+    --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #11171d;
+      --panel: #19212a;
+      --ink: #e8ece9;
+      --muted: #9aa8b2;
+      --rule: #2b3640;
+      --accent: #5cc4a6;
+      --accent-soft: #1b2e2a;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #11171d;
+    --panel: #19212a;
+    --ink: #e8ece9;
+    --muted: #9aa8b2;
+    --rule: #2b3640;
+    --accent: #5cc4a6;
+    --accent-soft: #1b2e2a;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-text-size-adjust: 100%;
+  }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+
+  /* Header */
+  header.top { border-bottom: 1px solid var(--rule); }
+  header.top .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-top: 14px; padding-bottom: 14px; flex-wrap: wrap; }
+  .mark { font-family: var(--font-mono); font-size: 13px; letter-spacing: .04em; color: var(--muted); }
+  nav { display: flex; gap: 18px; flex-wrap: wrap; font-size: 14px; }
+  nav a { color: var(--ink); text-decoration: none; border-bottom: 1px solid transparent; }
+  nav a:hover { border-bottom-color: var(--accent); }
+
+  /* Intro */
+  .intro { padding: 56px 0 40px; }
+  .role { font-family: var(--font-mono); font-size: 13px; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); margin: 0 0 12px; }
+  h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(2.4rem, 7vw, 3.8rem); line-height: 1.05; margin: 0 0 20px; letter-spacing: -0.01em; text-wrap: balance; }
+  .lede { font-size: 1.15rem; max-width: 62ch; margin: 0 0 24px; color: var(--ink); }
+  .contact { display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: 15px; color: var(--muted); }
+  .contact a { font-weight: 500; }
+
+  /* Figures strip */
+  .figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); border: 1px solid var(--rule); background: var(--panel); border-radius: 6px; margin-bottom: 8px; }
+  .fig { padding: 18px 20px; border-right: 1px solid var(--rule); }
+  .fig:last-child { border-right: 0; }
+  .fig b { display: block; font-family: var(--font-mono); font-weight: 500; font-size: 1.6rem; color: var(--accent); font-variant-numeric: tabular-nums; line-height: 1.2; }
+  .fig span { font-size: 14px; color: var(--muted); }
+  @media (max-width: 640px) {
+    .fig { border-right: 0; border-bottom: 1px solid var(--rule); }
+    .fig:last-child { border-bottom: 0; }
+  }
+
+  /* Sections */
+  section { padding: 44px 0 8px; }
+  h2 { font-family: var(--font-display); font-weight: 600; font-size: 1.7rem; margin: 0 0 6px; text-wrap: balance; }
+  .sub { color: var(--muted); margin: 0 0 24px; max-width: 62ch; }
+
+  /* Ledger rows */
+  .row { display: grid; grid-template-columns: 170px 1fr; gap: 8px 28px; padding: 22px 0; border-top: 1px solid var(--rule); }
+  .row:last-child { border-bottom: 1px solid var(--rule); }
+  .when { font-family: var(--font-mono); font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 4px; }
+  .row h3 { font-size: 1.1rem; font-weight: 600; margin: 0; }
+  .where { color: var(--muted); font-size: 15px; margin: 2px 0 10px; }
+  .row ul { margin: 0; padding-left: 1.1em; }
+  .row li { margin: 0 0 6px; max-width: 70ch; }
+  .row li::marker { color: var(--accent); }
+  @media (max-width: 640px) { .row { grid-template-columns: 1fr; } .when { padding-top: 0; } }
+
+  /* Skills */
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .card { background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 20px; }
+  .card h3 { font-size: 13px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .08em; font-weight: 500; color: var(--muted); margin: 0 0 12px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+  .chips li { font-size: 14px; padding: 3px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--ink); }
+
+  /* AI section */
+  .ai { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .ai .card p { margin: 0 0 8px; }
+  .tag { display: inline-block; font-family: var(--font-mono); font-size: 12px; padding: 2px 8px; border: 1px solid var(--accent); color: var(--accent); border-radius: 4px; margin-bottom: 10px; }
+  .tag.soon { border-style: dashed; color: var(--muted); border-color: var(--muted); }
+
+  footer { margin-top: 56px; border-top: 1px solid var(--rule); padding: 24px 0 40px; font-size: 14px; color: var(--muted); }
+  footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <span class="mark">A. M. SITHOUMMA</span>
+    <nav aria-label="Sections">
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#ai">AI &amp; automation</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="intro">
+    <p class="role">Senior Accountant</p>
+    <h1>Autumn Sithoumma</h1>
+    <p class="lede">Accounting professional with nine years of full-cycle experience across private equity, tech and media. I close the books accurately, keep multi-entity reporting on schedule and look for ways to cut manual work, including with AI tools.</p>
+    <div class="contact">
+      <span>Los Angeles, CA</span>
+      <a href="mailto:amsithoumma@gmail.com">amsithoumma@gmail.com</a>
+    </div>
+  </div>
+
+  <div class="figures" aria-label="At a glance">
+    <div class="fig"><b>9 yrs</b><span>Full-cycle accounting</span></div>
+    <div class="fig"><b>5 regions</b><span>US, UK, Australia, Canada, Europe</span></div>
+    <div class="fig"><b>24 hotels</b><span>Bank accounts reconciled monthly</span></div>
+    <div class="fig"><b>3 sectors</b><span>Private equity, tech, media</span></div>
+  </div>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <p class="sub">Most recent first.</p>
+
+    <div class="row">
+      <div class="when">Nov 2023 – Present</div>
+      <div>
+        <h3>Senior Accountant</h3>
+        <p class="where">Mega Corporate Operations (MCO), Beverly Hills, CA · Shared Operational Infrastructure of Regent LP</p>
+        <ul>
+          <li>Prepare, book and review journal entries, accruals and reclassifications in the monthly close across multiple entities, and help prepare financial statements and management reporting packages.</li>
+          <li>Reconcile bank, intercompany and other accounts for a multi-entity, multi-currency structure spanning the US, UK, Australia, Canada and Europe.</li>
+          <li>Help maintain the fixed asset subledger, including additions, disposals and depreciation.</li>
+          <li>Take part in budgeting, cash flow and forecasting so leadership can see cash availability and prioritize weekly vendor payments.</li>
+          <li>Support AP and AR teams: review agings, revenue recognition and vendor reconciliations.</li>
+          <li>Lead process improvement and ad hoc projects, including program profitability analysis, tax compliance support, ERP implementation, and AI-driven workflow and integration automation.</li>
+          <li>Work with auditors on domestic and global audits, and partner with finance and operations teams across time zones to deliver close deliverables on schedule.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="when">Mar 2023 – Oct 2023</div>
+      <div>
+        <h3>Senior Accountant</h3>
+        <p class="where">Link Entertainment LLC, Los Angeles, CA</p>
+        <ul>
+          <li>Tracked all revenue and client payouts for the company and its owners.</li>
+          <li>Managed and reconciled accounts, and prepared journal entries and balance sheet reconciliations.</li>
+          <li>Built spreadsheets with macros and VLOOKUPs to hold company and client data and automate data inquiries.</li>
+          <li>Implemented ADP Run for semi-monthly payroll, HR, and time and attendance.</li>
+          <li>Worked with Equifax to complete ERC requirements and receive the company refund, and collaborated with the company CPA on PTE filings and payments.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="when">Jun 2020 – Mar 2023</div>
+      <div>
+        <h3>Senior Accountant</h3>
+        <p class="where">Standard Media Group, LLC, Nashville, TN</p>
+        <ul>
+          <li>Produced financial statements and ran variance and budget analysis.</li>
+          <li>Prepared, booked and verified journal entries, invoice coding, outgoing payments, cash postings and intercompany transactions.</li>
+          <li>Reviewed, allocated and tracked retransmission and OTT revenue from Hulu, VZW and Disney.</li>
+          <li>Assisted with a company acquisition and sale, including due diligence and audits.</li>
+          <li>Implemented and managed accounting, benefits, HR and payroll systems, and processed payroll for four units.</li>
+          <li>Wrote procedures and policies on posting payments, deposits and general accounting for new systems.</li>
+          <li>Worked with the bank to launch a new payment portal that brought in revenue more efficiently.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="when">Sep 2019 – Jun 2020</div>
+      <div>
+        <h3>Senior Accountant</h3>
+        <p class="where">RX Partners LLC, Nashville, TN</p>
+        <ul>
+          <li>Processed bi-weekly payroll while maintaining a new payroll system.</li>
+          <li>Completed journal entries and balance sheet and bank reconciliations.</li>
+          <li>Produced monthly financial statements and recorded and distributed dividend disbursements to pharmacy equity holders.</li>
+          <li>Completed month-end close and tax filings for multiple states and entities.</li>
+          <li>Reconciled gross-to-net reserve components (rebates, chargebacks, discounts and returns) and adjusted reserves to actual activity.</li>
+          <li>Oversaw the accounts receivable team and posted payments when needed.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="when">Sep 2018 – Sep 2019</div>
+      <div>
+        <h3>Corporate Accountant</h3>
+        <p class="where">Premier Parking of TN, LLC, Nashville, TN</p>
+        <ul>
+          <li>Managed the accounts receivable and collections team.</li>
+          <li>Produced financial records and statements, and prepared, booked and verified journal entries for main and intercompany accounts.</li>
+          <li>Completed monthly and year-end closes with P&amp;L analysis, variance analysis, and budgets with quarterly forecasts.</li>
+          <li>Recorded and distributed dividend disbursements to equity holders, and completed month-end close and tax filings for multiple states and entities.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="when">Feb 2017 – Aug 2018</div>
+      <div>
+        <h3>Treasury / Staff Accountant, Financial Services Center</h3>
+        <p class="where">Loews Hotels &amp; Co., Nashville, TN</p>
+        <ul>
+          <li>Checked bank activity, completed cash control worksheets daily, and reconciled all bank accounts monthly for 24 owned and managed hotel properties.</li>
+          <li>Monitored AP invoice coding and reviewed general ledger entries.</li>
+          <li>Ran full-cycle month-end close for the Boston, Hollywood and San Francisco hotels: prepaids, balance sheet reclasses, variance, P&amp;L and PTEB analysis, payroll, and food and beverage costs and inventory.</li>
+          <li>Resolved AR, AP and payroll issues with hotel properties and other departments.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="when">Jun 2016 – Sep 2016</div>
+      <div>
+        <h3>Staff Accountant</h3>
+        <p class="where">Lewis, Smith, &amp; Associates, P.C., Nashville, TN</p>
+        <ul>
+          <li>Resolved accounts and balanced reconciliations, completed personal and business tax returns, prepared audit paperwork and handled HUD audits.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills and tools</h2>
+    <p class="sub">Systems I have used across industries.</p>
+    <div class="skills">
+      <div class="card">
+        <h3>ERP and accounting</h3>
+        <ul class="chips">
+          <li>Microsoft D365</li><li>NetSuite</li><li>Business Central</li><li>SAP</li><li>Oracle</li><li>Great Plains</li><li>SAGE</li><li>QuickBooks</li><li>Epicor</li><li>Opera</li><li>Management Reporter</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Close, tax and reporting</h3>
+        <ul class="chips">
+          <li>Trintech</li><li>DocLink</li><li>ATB</li><li>DataSafe</li><li>ProFx Tax</li><li>Pioneer</li><li>Power BI</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Payroll and HR</h3>
+        <ul class="chips">
+          <li>ADP</li><li>Paylocity</li><li>Employee Navigator</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Microsoft Office</h3>
+        <ul class="chips">
+          <li>Excel (pivot tables, VLOOKUP, macros)</li><li>Access</li><li>Word</li><li>PowerPoint</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>AI tools</h3>
+        <ul class="chips">
+          <li>Claude</li><li>Gemini</li><li>Copilot</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Languages</h3>
+        <ul class="chips">
+          <li>English</li><li>Lao</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="ai">
+    <h2>AI and automation</h2>
+    <p class="sub">Applying AI to accounting work, and building new skills with Claude.</p>
+    <div class="ai">
+      <div class="card">
+        <span class="tag">In practice</span>
+        <p><strong>Workflow automation in finance</strong></p>
+        <p>At MCO, I use AI tools to automate workflows and integrations across close, reporting and ad hoc finance projects, alongside ERP implementation and process improvement.</p>
+      </div>
+      <div class="card">
+        <span class="tag soon">Coming soon</span>
+        <p><strong>Claude Academy</strong></p>
+        <p>Completed courses and certificates will be listed here.</p>
+      </div>
+      <div class="card">
+        <span class="tag soon">Coming soon</span>
+        <p><strong>Projects built with Claude</strong></p>
+        <p>Small tools and solutions for accounting and finance work will be added here.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <div class="row">
+      <div class="when">Aug 2011 – May 2016</div>
+      <div>
+        <h3>Bachelor of Business Administration, Accounting</h3>
+        <p class="where">University of Memphis, Memphis, TN · CPA Candidate</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p class="sub">Open to senior accounting and finance operations roles.</p>
+    <p>Email <a href="mailto:amsithoumma@gmail.com">amsithoumma@gmail.com</a></p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Autumn Sithoumma</span>
+    <span>Los Angeles, CA</span>
+  </div>
+</footer>
+</body>
+</html>
